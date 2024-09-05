@@ -1,4 +1,4 @@
-// verson translation 0.3.1 patch 1
+// ver translation 0.3.1 patch 1 for NG+
 LANGUAGES.RU = {
     name: "Russian",
     inter_name: "Русский",
@@ -40,6 +40,12 @@ LANGUAGES.RU = {
         'dark-matter-name': "Темная Материя",
         'dark-matter-costName': toTextStyle('Темная Материя','black-hole'),
 
+        'dark-faith-name': "Темная Вера",
+        'dark-faith-costName': toTextStyle('Темная Вера','black-hole'),
+
+        'dilated-name': "Растяженная масса",
+        'dilated-costName': 'Растяженная масса',
+
         'full-shark-level': toTextStyle('Акульий','shark') + ' Уровень',
 
         'sharkoid-faith': toTextStyle('Акулаподобная Вера','humanoid'),
@@ -55,6 +61,9 @@ LANGUAGES.RU = {
 
         'curr-top-3-req': x => `Набрать <b>${format(x)}</b> ${toTextStyle('Рыб','fish')} и <b>8</b> ${toTextStyle('Черных Дыр','black-hole')}`, 
         'curr-top-3-reset': x => `Пожертвуй своих ${toTextStyle('Акул','shark')} ради <b>${format(x,0)}</b> ${toTextStyle('Темной Материи','black-hole')}`,
+        
+        'curr-top-4-req': x => `Набрать <b>${format(x)}</b> ${toTextStyle('Акулоподобной Веры','humanoid')}`, 
+        'curr-top-4-reset': x => `Переведи свою ${toTextStyle('Акулоподобной Веру','humanoid')} в <b>${format(x,0)}</b> ${toTextStyle('Темной Веры','black-hole')}`,
         
 
         'radioactive-name': toTextStyle('Радиация '+icon("radioactive"),'core'),
@@ -83,6 +92,7 @@ LANGUAGES.RU = {
         'tab-singularity': toTextStyle('Сингулярность','black-hole'),
         'tab-black-hole': toTextStyle('Черная Дыра','black-hole'),
         'tab-singularity-milestones': "Вехи "+toTextStyle('Сингулярности','black-hole'),
+        'tab-dilation': "Растяжение",
 
         // Elements (Элементы)
 
@@ -186,6 +196,10 @@ LANGUAGES.RU = {
         'su-m5-req': 'Уровень Копания 9',
         'su-m5-name': 'Базовые Руды',
         'su-m5-desc': `Увеличивает количество добываемые первых 4 руд в <b>×2</b> за уровень.`,
+
+        'su-d1-req': 'Веха Сингулярности 17',
+        'su-d1-name': 'Усилитель Растяжения',
+        'su-d1-desc': `Увеличивает количество получаемой Растяженной материи в <b>^1.1</b> за уровень.`,
 
         // Researches
 
@@ -604,6 +618,7 @@ LANGUAGES.RU = {
             'shark': ['Отдалённый Уровень Акулы',`Отдаляет третье масштабирование Уровня ${toTextStyle('Акулы','shark')}`],
             'refined_shard': ['Энергитический Осколок',`Увеличивает экспоненту осколков ${toTextStyle('Престижа','prestige')}`],
             'wormhole': ['Червоточина',`Открывает новый Ускоритель Частиц`],
+            'dilation': ['Растяжение',`Открывает новый эффект Растяжения.`],
         },
         'forge-progress': (x,s) => x ? `Ковка в процессе <b>${x}</b>... <b>${s}</b>` : `Кузня пустует.`,
         'forge-speed': x => `Скорость Ковки: <b>${x}</b>`,
@@ -648,6 +663,11 @@ LANGUAGES.RU = {
                 [`10 Всего Темной Материи`,`Автоматическая активация всех за раз Ускорителей Частиц`],
                 [`${format(1e6)} Всего Темной Материи`,`Изучения <b>s1-s3</b> остаются при Жертве. Открывает новую автоматизацию. Улучшения Остатка теперь не берут Остаток при покупке.`],
                 [`${format(1e12)} Всего Темной Материи`,`Открывает новая функция.`],
+                [`100 Всего Растяженной Материи`,`Открывает новое улучшение Остатка`],
+                [`${format(1e3)} Всего Растяженной Материи`,`Открывает некоторые эффекты <b>Растяжения</b>`],
+                [`${format(1e18)} Всего Растяженной Материи`,`Открытые новой валюты`],
+                [`1 Всего Темной Веры`,`Открывает новое улучшение в <b>Кузне</b>.`],
+                [`${format('ee1.25e6')} Всего Рыбы`,`${toTextStyle("Темная Материя",'black-hole')} усиливает Растяженную Материю, автодобыча <b>100%</b> ${toTextStyle("Темной Материи",'black-hole')} в секунду входит в комплект.`],
             ]
         },
 
@@ -665,6 +685,7 @@ LANGUAGES.RU = {
             [`Глубина Без Дна`,x=>`Прохождение глубины каждого океана усилено в ${x}.`],
             [`Горячая Картошка`,x=>`Радиоактивные бонусы тепера ${x} сильнее.`],
             [`Мега Уровень`,x=>`Четвёртое Масштабирование Уровня ${toTextStyle("Акулы",'shark')} отсроченно на ${x}.`],
+            [`Множитель Растяжения`,x=>`Растяженная Материя умноженна в ${x}.`],
         ],
 
 
@@ -781,6 +802,17 @@ LANGUAGES.RU = {
             Вы готовы к ${toTextStyle('Жертвоприношению','black-hole')}?
             `
         },
+        get 'reset-df-message'() {
+            let e = toTextStyle('Альтернатива','black-hole')
+            return `
+            <h3>${e}?</h3><br>
+            <subtitle>“Наша вера недостаточно глубока. Пришло время обратиться к новым богам - К ${toTextStyle('НАУКЕ','black-hole')}!”</subtitle>
+            ${toTextStyle('Измерение веры','black-hole')} является вторым мини-слоем сброса.
+            Это достаточно рискованное действие, ведь это сбросит все, что и ${toTextStyle('Жертва','black-hole')} взамен на ${toTextStyle('Темную Веру','black-hole')}.<br>
+            <img src="textures/tempdf.png"><br>
+            Готов ли народ к ${toTextStyle('изменениям','black-hole')}?
+            `
+        },
 
         // Other (Прочее)
 
@@ -818,6 +850,7 @@ LANGUAGES.RU = {
             so: x => `${formatPow(x)} отсрочка сверхпопуляции ${toTextStyle('Акул','shark')}`,
             vibranium: x => `${formatMult(x)} <b>Вибраниума</b>`,
             remnants: x => `${formatMult(x)} ${toTextStyle('Остатков','black-hole')}`,
+            dilated: x => `${formatMult(x)} ${'Растяженной Материи'}`,
         },
 
         'total': "всего",
@@ -885,5 +918,6 @@ LANGUAGES.RU = {
         'confirm-humanoid': "Эволюция акул",
         'confirm-black-hole': "Формирование Черной Дыры",
         'confirm-sacrifice': "Жертвоприношение",
+        'confirm-df': "Конвертация Веры",
     },
 }
