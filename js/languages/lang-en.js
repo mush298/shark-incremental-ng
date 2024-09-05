@@ -800,6 +800,16 @@ LANGUAGES.EN = {
             Are you sure you want to sacrifice your sharks?
             `
         },
+        get 'reset-df-message'() {
+            let e = toTextStyle('Аlternative','black-hole'), c = toTextStyle('Sacrifice','black-hole')
+            return `
+            <h3>The ${e}?</h3><br>
+            The ${e} is the second reset mini-layer.
+            This resets everything the ${c} does for ${toTextStyle('Dark Faith','black-hole')}.<br>
+            <img src="textures/tempdf.png"><br>
+            Are you sure you want to convert the Faith your sharks?
+            `
+        },
         
         // Other
 
@@ -904,5 +914,6 @@ LANGUAGES.EN = {
         'confirm-humanoid': "Evolve Sharks",
         'confirm-black-hole': "Form the Black Hole",
         'confirm-sacrifice': "Sacrifice Sharks",
+        'confirm-df': "Coverting Faith",
     },
 }
